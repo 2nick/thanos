@@ -143,6 +143,7 @@ func receiver(i int, config string, replicationFactor int, receiveAddresses ...s
 		var cmds []Exec
 		cmds = append(cmds, newCmdExec(exec.Command(testutil.PrometheusBinary(),
 			"--config.file", promDir+"/prometheus.yml",
+			"--debug.name", fmt.Sprintf("receive-%d", i),
 			"--storage.tsdb.path", promDir,
 			"--log.level", "info",
 			"--web.listen-address", promRemoteWriteHTTP(i),
